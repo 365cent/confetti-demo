@@ -7,6 +7,7 @@
     <title>Document</title>
     <style>
         @import url('https://fonts.cdnfonts.com/css/ibm-plex-sans');
+
         body {
             font-family: 'IBM Plex Sans', sans-serif;
             transform: scale(1.2);
@@ -29,8 +30,12 @@
 <body>
     <script type="module">
         import confetti from 'https://cdn.skypack.dev/canvas-confetti';
-        const hash = window.location.hash.slice(1);
+        let hash = window.location.hash.slice(1);
+        const title = document.createElement('h1');
         hash = hash.replace(/%20/g, ' ');
+        title.textContent = hash;
+        document.title = hash;
+        document.body.appendChild(title);
         const count = 200;
         const defaults = {
             origin: { y: 0.7 }
@@ -58,15 +63,8 @@
                 origin: { y: 0.6 }
             });
         }
-
-        window.onload = () => {
-            const title = document.createElement('h1');
-            title.textContent = hash;
-            document.title = hash;
-            document.body.appendChild(title);
-            fireAnimation();
-            setInterval(fireAnimation, 750);
-        }
+        fireAnimation();
+        setInterval(fireAnimation, 750);
     </script>
 </body>
 
