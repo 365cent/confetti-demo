@@ -6,9 +6,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=10.0">
     <title>Document</title>
     <style>
+        @import url('https://fonts.cdnfonts.com/css/ibm-plex-sans');
         body {
+            font-family: 'IBM Plex Sans', sans-serif;
             transform: scale(1.2);
             overflow: hidden;
+            height: calc(100vh - 6em);
+            background-color: #F3F3FE;
+        }
+
+        h1 {
+            position: absolute;
+            font-size: 3.2em;
+            font-weight: 400;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
         }
     </style>
 </head>
@@ -16,10 +29,17 @@
 <body>
     <script type="module">
         import confetti from 'https://cdn.skypack.dev/canvas-confetti';
-        var count = 200;
-        var defaults = {
+        const hash = window.location.hash.slice(1);
+        const count = 200;
+        const defaults = {
             origin: { y: 0.7 }
         };
+
+
+        function randomInRange(min, max) {
+            return Math.random() * (max - min) + min;
+        }
+
 
         function fire(particleRatio, opts) {
             confetti({
@@ -29,28 +49,23 @@
             });
         }
 
-        fire(0.25, {
-            spread: 26,
-            startVelocity: 55,
-        });
-        fire(0.2, {
-            spread: 60,
-        });
-        fire(0.35, {
-            spread: 100,
-            decay: 0.91,
-            scalar: 0.8
-        });
-        fire(0.1, {
-            spread: 120,
-            startVelocity: 25,
-            decay: 0.92,
-            scalar: 1.2
-        });
-        fire(0.1, {
-            spread: 120,
-            startVelocity: 45,
-        });
+        const fireAnimation = () => {
+            confetti({
+                angle: randomInRange(55, 125),
+                spread: randomInRange(50, 70),
+                particleCount: randomInRange(50, 100),
+                origin: { y: 0.6 }
+            });
+        }
+
+        window.onload = () => {
+            const title = document.createElement('h1');
+            title.textContent = hash;
+            document.title = hash;
+            document.body.appendChild(title);
+            fireAnimation();
+            setInterval(fireAnimation, 750);
+        }
     </script>
 </body>
 
