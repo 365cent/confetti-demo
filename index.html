@@ -30,7 +30,7 @@
 <body>
     <script type="module">
         import confetti from 'https://cdn.skypack.dev/canvas-confetti';
-        let hash = window.location.hash.slice(1);
+        let hash = window.location.hash.slice(1) || 'Hello, World!';
         const title = document.createElement('h1');
         hash = hash.replace(/%20/g, ' ');
         title.textContent = hash;
