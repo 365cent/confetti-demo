@@ -28,8 +28,8 @@
 </head>
 
 <body>
-    <script type="module">
-        import confetti from 'https://cdn.skypack.dev/canvas-confetti';
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+    <script>
         let hash = window.location.hash.slice(1) || 'Hello, World!';
         const title = document.createElement('h1');
         hash = hash.replace(/%20/g, ' ');
